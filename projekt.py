@@ -36,7 +36,7 @@ zegar = pygame.time.Clock()
 
 # Wąż
 waz = Waz()
-pygame.time.set_timer(PORUSZ_WEZEM, 200)
+pygame.time.set_timer(PORUSZ_WEZEM, 150)
 
 # Jabłka
 jablko = Jablko()
