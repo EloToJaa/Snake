@@ -51,9 +51,19 @@ while gra_dziala:
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_ESCAPE:
                 gra_dziala = False
+            if event.key == pygame.K_w:
+                waz.zmien_kierunek(Kierunek.GORA)
+            if event.key == pygame.K_s:
+                waz.zmien_kierunek(Kierunek.DOL)
+            if event.key == pygame.K_a:
+                waz.zmien_kierunek(Kierunek.LEWO)
+            if event.key == pygame.K_d:
+                waz.zmien_kierunek(Kierunek.PRAWO)
 
         elif event.type == pygame.QUIT:
             gra_dziala = False
+        elif event.type == PORUSZ_WEZEM:
+            waz.aktualizuj()
 
     # Rysowanie
     ekran.blit(tlo, (0, 0))
