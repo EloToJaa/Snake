@@ -76,9 +76,13 @@ while gra_dziala:
     # Rysowanie
     ekran.blit(tlo, (0, 0))
     for jablko in jablka:
-        ekran.blit(jablko.obraz, jablko.pozycja)
+        ekran.blit(jablko.obraz, jablko.rect)
     ekran.blit(waz.obraz, waz.rect)
     waz.rysuj_segmenty(ekran)
+
+    # Kolizje
+    if waz.sprawdz_kolizje():
+        gra_dziala = False
 
     # Koniec pętli
     pygame.display.flip()

@@ -9,4 +9,4 @@ class Jablko(pygame.sprite.Sprite):
         losowa_pozycja = pygame.Rect(
             random.randrange(0, 24) * 32, random.randrange(0, 18) * 32, 32, 32
         )
-        self.pozycja = losowa_pozycja
+        self.rect = losowa_pozycja
