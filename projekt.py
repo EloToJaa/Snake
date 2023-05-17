@@ -14,6 +14,9 @@ WYSOKOSC_EKRANU = WYSOKOSC_KAFELKI * 32
 FPS = 60
 PORUSZ_WEZEM = pygame.USEREVENT + 1
 
+# Punkty
+punkty = 0
+
 # Tworzenie tła
 tlo = pygame.Surface((SZEROKOSC_EKRANU, WYSOKOSC_EKRANU))
 
@@ -33,6 +36,7 @@ for i in range(SZEROKOSC_KAFELKI):
 pygame.init()
 ekran = pygame.display.set_mode((SZEROKOSC_EKRANU, WYSOKOSC_EKRANU))
 zegar = pygame.time.Clock()
+moja_czcionka = pygame.font.SysFont("Comic Sans MS", 24)
 
 # Wąż
 waz = Waz()
@@ -72,6 +76,7 @@ while gra_dziala:
         waz.jedz_jablko()
         jablko = Jablko()
         jablka.add(jablko)
+        punkty += 1
 
     # Rysowanie
     ekran.blit(tlo, (0, 0))
@@ -80,9 +85,15 @@ while gra_dziala:
     ekran.blit(waz.obraz, waz.rect)
     waz.rysuj_segmenty(ekran)
 
+    # Tekst
+    tekst_z_wynikiem = moja_czcionka.render(f"Wynik: {punkty}", False, (0, 0, 0))
+    ekran.blit(tekst_z_wynikiem, (16, 16))
+
     # Kolizje
     if waz.sprawdz_kolizje():
         gra_dziala = False
+        tekst_z_przegrana = moja_czcionka.render("Przegrana", False, (200, 0, 0))
+        ekran.blit(tekst_z_przegrana, (SZEROKOSC_EKRANU / 2 - 50, WYSOKOSC_EKRANU / 2))
 
     # Koniec pętli
     pygame.display.flip()
