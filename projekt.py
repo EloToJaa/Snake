@@ -65,11 +65,20 @@ while gra_dziala:
         elif event.type == PORUSZ_WEZEM:
             waz.aktualizuj()
 
+    # Kolizje
+    kolizja_z_jablkiem = pygame.sprite.spritecollideany(waz, jablka)
+    if kolizja_z_jablkiem != None:
+        kolizja_z_jablkiem.kill()
+        waz.jedz_jablko()
+        jablko = Jablko()
+        jablka.add(jablko)
+
     # Rysowanie
     ekran.blit(tlo, (0, 0))
     for jablko in jablka:
         ekran.blit(jablko.obraz, jablko.pozycja)
-    ekran.blit(waz.obraz, waz.pozycja)
+    ekran.blit(waz.obraz, waz.rect)
+    waz.rysuj_segmenty(ekran)
 
     # Koniec pętli
     pygame.display.flip()
